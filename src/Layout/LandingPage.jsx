@@ -6,7 +6,7 @@ export const LandingPage = () => {
 
   return (
     <>
-        <Navbar />
+        <Navbar transparent />
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path='/*' element={<Navigate to={"/"} />} /> 

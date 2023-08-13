@@ -50,11 +50,8 @@ export const Navbar = (props) => {
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
             <i
-              className={
-                (props.transparent ? "text-white" : "text-gray-800") +
-                "fas fa-bars"
-              }
-            ></i>
+              className="text-white"
+            >=</i>
           </button>
         </div>
         <div
