@@ -74,12 +74,12 @@ export default function FormRegister() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="input input-bordered" />
-              <label className="label">
-                <a href="/auth/login" className="label-text-alt link link-hover text-blue-800">Already Have Account ? Login Now </a>
-              </label>
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign Up</button>
+              <label className="label justify-center">
+                <a href="/auth/login" className="label-text-alt link link-hover text-blue-800">Already Have Account ? Login Now </a>
+              </label>
             </div>
             </form>
           </div>
