@@ -60,11 +60,11 @@ export default function Diamond() {
 
             <section>
               <div className='bg-neutral-900 rounded-xl'>
-                <h1 className='flex justify-start ml-10 text-white'>Diamond</h1>
+                <h1 className='flex justify-center ml-10 bg-sky-500 border-8 border-neutral-900 rounded-xl font-medium text-white absolute -mt-5 w-32 py-1'>Diamond</h1>
                 <div className='grid gap-x-10 gap-y-10 grid-cols-3 py-10 px-10'>
                   {diamond.map((item) => {
                     return (
-                      <div className='card w-44 cursor-pointer hover:bg-sky-700 text-white bg-neutral-800 border border-slate-500 glass shadow-xl'>
+                      <div className='card w-44 cursor-pointer hover:bg-sky-700 text-white bg-neutral-800 border glass shadow-xl'>
                         <figure className='bg-yellow-400 py-2 glass'>
                           <img
                             src={dm}
@@ -73,13 +73,21 @@ export default function Diamond() {
                           />
                         </figure>
                         <div className='card-body'>
-                          <h2 className='text-md font-medium'>{item.name}</h2>
-                          <p className='text-md'>
+                          <h2 className='font-medium'>{item.name}</h2>
+                          <p className=''>
                             {item.price.toLocaleString('id-ID', {
                               style: 'currency',
                               currency: 'IDR',
                             })}
                           </p>
+                          {/* // example for cart 
+                          <p className='text-md'>
+                            {(item.price * 2).toLocaleString('id-ID', {
+                              style: 'currency',
+                              currency: 'IDR',
+                            })}
+                          </p> */}
+                          
                         </div>
                       </div>
                     );
@@ -90,7 +98,6 @@ export default function Diamond() {
           </div>
         </div>
         <div className='text-white flex justify-center'>
-          <div className=''>Cart</div>
         </div>
       </div>
     </>
