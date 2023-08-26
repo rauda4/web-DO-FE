@@ -1,11 +1,15 @@
 import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AlertError from './AlertError';
 
 export default function FormRegister() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const payload = {
     username,
@@ -24,9 +28,13 @@ export default function FormRegister() {
           },
         },
       );
-
-      console.log(response);
-    } catch (error) {}
+      if (response.status === 200) {
+        navigate('/auth/login');
+      }
+    } catch (error) {
+      setError(error.response.data.message);
+      // console.log(error);
+    }
   };
 
   return (
@@ -35,6 +43,7 @@ export default function FormRegister() {
         <div className='text-center lg:text-left'></div>
         <div className='card flex-shrink-0 w-screen max-w-sm shadow-2xl bg-base-100'>
           <div className='card-body'>
+            {error && <AlertError message={error} />}
             <form onSubmit={handleSubmit}>
               {/* section username */}
               <div className='form-control'>
@@ -48,6 +57,7 @@ export default function FormRegister() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className='input input-bordered'
+                  required
                 />
               </div>
               {/* section email */}
@@ -56,12 +66,13 @@ export default function FormRegister() {
                   <span className='label-text'>Email</span>
                 </label>
                 <input
-                  type='text'
+                  type='email'
                   placeholder='Email'
                   name='email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className='input input-bordered'
+                  required
                 />
               </div>
               {/* section Password */}
@@ -70,12 +81,13 @@ export default function FormRegister() {
                   <span className='label-text'>Password</span>
                 </label>
                 <input
-                  type='text'
+                  type='password'
                   placeholder='Password'
                   name='password'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className='input input-bordered'
+                  required
                 />
               </div>
               <div className='form-control mt-6'>
