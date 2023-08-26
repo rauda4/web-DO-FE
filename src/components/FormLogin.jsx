@@ -59,6 +59,7 @@ export default function FormLogin() {
                   name='username'
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  required
                 />
               </div>
               <div className='form-control'>
@@ -72,6 +73,7 @@ export default function FormLogin() {
                   name='username'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
               <div className='form-control mt-4'>
