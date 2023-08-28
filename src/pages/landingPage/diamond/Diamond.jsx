@@ -60,7 +60,7 @@ export default function Diamond() {
 
             <section>
               <div className='bg-neutral-900 rounded-xl'>
-                <h1 className='flex justify-center ml-10 bg-sky-500 border-8 border-neutral-900 rounded-xl font-medium text-white absolute -mt-5 w-32 py-1'>Diamond</h1>
+                <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-medium text-white absolute -mt-5 w-32 py-1'>Diamond</h1>
                 <div className='grid gap-x-10 gap-y-10 grid-cols-3 py-10 px-10'>
                   {diamond.map((item) => {
                     return (
