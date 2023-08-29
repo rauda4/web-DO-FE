@@ -6,7 +6,6 @@ const register = async (userData) => {
     'http://localhost:8080/auth/register',
     userData,
   );
-
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data));
   }
@@ -38,6 +37,7 @@ const logout = () => {
   localStorage.removeItem('userId');
   localStorage.removeItem('token');
   localStorage.removeItem('email');
+  localStorage.removeItem('user');
   window.location.reload();
 };
 
