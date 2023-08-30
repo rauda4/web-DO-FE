@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register, reset } from '../../feature/auth/authSlice';
-import AlertError from '../AlertError';
-import Spinner from '../Spinner';
+import AlertError from '../utils/AlertError';
+import Spinner from '../utils/Spinner';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
 export default function FormRegister() {

@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { AuthPage } from './Layout/AuthPage';
-import { LandingPage } from './Layout/LandingPage';
+import { AuthPage } from './layout/AuthPage';
+import { LandingPage } from './layout/LandingPage';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 

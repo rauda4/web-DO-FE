@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, reset } from '../../feature/auth/authSlice';
-import Spinner from '../../components/Spinner';
-import AlertError from '../AlertError';
+import Spinner from '../../components/utils/Spinner';
+import AlertError from '../utils/AlertError';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
 export default function FormLogin() {
