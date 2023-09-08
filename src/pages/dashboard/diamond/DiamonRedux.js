@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import dm from '../../../../assets/diamond.png';
+import dm from '../../../assets/diamond.png';
 import {
   diamondSelector,
   getDiamonds,
-} from '../../../../feature/diamonds/diamondSlice';
+} from '../../../feature/diamonds/diamondSlice';
 
 export default function DiamonRedux() {
   const dispatch = useDispatch();

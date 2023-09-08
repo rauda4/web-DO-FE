@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import dm from '../../../../assets/diamond.png';
+import dm from '../../../assets/diamond.png';
 import { useEffect } from 'react';
 import axios from 'axios';
 
