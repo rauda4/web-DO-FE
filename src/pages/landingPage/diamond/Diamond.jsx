@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import dm from '../../../assets/diamond.png';
-import { useEffect } from 'react';
-import axios from 'axios';
+import {
+  diamondSelector,
+  getDiamonds,
+} from '../../../feature/diamonds/diamondSlice';
 
 export default function Diamond() {
-  const [diamond, setDiamond] = useState([]);
-
+  const dispatch = useDispatch();
+  const diamond = useSelector(diamondSelector.selectAll);
   useEffect(() => {
-    document.title = 'Top Up Diamond Mobile Legends';
-    const getDiamond = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/diamond');
-        setDiamond(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getDiamond()
-  }, []);
-
-  // console.log(diamond);
+    dispatch(getDiamonds());
+  }, [dispatch]);
 
   return (
     <>
@@ -61,11 +53,15 @@ export default function Diamond() {
 
             <section>
               <div className='bg-neutral-900 rounded-xl'>
-                <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-medium text-white absolute -mt-5 w-32 py-1'>Diamond</h1>
+                <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-medium text-white absolute -mt-5 w-32 py-1'>
+                  Diamond
+                </h1>
                 <div className='grid gap-x-10 gap-y-10 grid-cols-3 py-10 px-10'>
                   {diamond.map((item) => {
                     return (
-                      <div className='card w-44 cursor-pointer hover:bg-sky-700 text-white bg-neutral-800 border glass shadow-xl' key={item.id}>
+                      <div
+                        className='card w-44 cursor-pointer hover:bg-sky-700 text-white bg-neutral-800 border glass shadow-xl'
+                        key={item.id}>
                         <figure className='bg-yellow-400 py-2 glass'>
                           <img
                             src={dm}
@@ -73,7 +69,7 @@ export default function Diamond() {
                             alt='diamond'
                           />
                         </figure>
-                        <div className='card-body' >
+                        <div className='card-body'>
                           <h2 className='font-medium'>{item.name}</h2>
                           <p className=''>
                             {item.price.toLocaleString('id-ID', {
@@ -88,7 +84,6 @@ export default function Diamond() {
                               currency: 'IDR',
                             })}
                           </p> */}
-                          
                         </div>
                       </div>
                     );
@@ -98,8 +93,7 @@ export default function Diamond() {
             </section>
           </div>
         </div>
-        <div className='text-white flex justify-center'>
-        </div>
+        <div className='text-white flex justify-center'></div>
       </div>
     </>
   );

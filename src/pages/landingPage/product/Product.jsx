@@ -1,8 +1,11 @@
+import Navbar from "../../../components/Navbar";
 
 export default function Product() {
   return (
     <>
-      <div className='bg-current py-8'></div>
+      <Navbar transparent />
+      <div className='bg-current py-9'></div>
+      <div className="text-slate">Product</div>
     </>
   );
 }
