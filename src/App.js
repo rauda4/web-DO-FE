@@ -18,24 +18,19 @@ function App() {
     <Routes>
       <Route
         path='/*'
-        element={<LandingLayout />}
-      />
+        element={<LandingLayout />}></Route>
       <Route
         path='/auth/*'
         element={
           isAuthenticated ? (
-            <Navigate to={'/admin/'} />
+            <Navigate to={'/admin/datadiamond'} />
           ) : (
             <AuthLayout />
           )
-        }
-      />
+        }></Route>
       <Route
         path='/admin/*'
-        element={
-          isAuthenticated ? <AdminLayout /> : <Navigate to={'/auth/login'} />
-        }
-      />
+        element={isAuthenticated ? <AdminLayout /> : <AuthLayout />}></Route>
     </Routes>
   );
 }

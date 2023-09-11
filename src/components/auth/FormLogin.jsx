@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AlertError from '../AlertError';
+import AlertError from '../utils/AlertError';
 
 export default function FormLogin() {
   const [username, setUsername] = useState('');

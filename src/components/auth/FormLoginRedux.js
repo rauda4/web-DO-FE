@@ -29,7 +29,8 @@ export default function FormLogin() {
       setError(message);
     }
     if (isSuccess) {
-      navigate('/');
+      // navigate('/admin/dashboard');
+      window.location.href = '/admin/dashboard';
     }
     dispatch(reset());
   }, [isError, isSuccess, message, navigate, dispatch]);
