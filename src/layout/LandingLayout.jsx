@@ -34,7 +34,7 @@ export default function LandingLayout() {
           element={<ContactUs />}
         />
         <Route
-          path='*'
+          path='/*'
           element={<Navigate to={'/'} />}
         />{' '}
       </Routes>

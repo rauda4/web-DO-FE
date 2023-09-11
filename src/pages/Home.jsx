@@ -1,10 +1,12 @@
 import React from 'react'
 // import { Carousel } from '../components/Carousel'
 import banner from '../assets/banner3.jpg'
+import Navbar from '../components/Navbar'
 
-export const Home = () => {
+export default function Home (){
   return (
     <>
+      <Navbar transparent />
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center"
             style={{

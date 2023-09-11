@@ -1,9 +1,10 @@
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import Register from '../pages/authentication/Register';
-import Login from '../pages/authentication/Login';
+import {  Route, Routes, useNavigate } from 'react-router-dom';
+import Register from '../components/auth/FormRegistRedux';
+import Login from '../components/auth/FormLoginRedux';
 import { useEffect } from 'react';
+import Notfound from '../pages/Notfound'
 
-export default function AuthLayout(){
+export default function AuthLayout() {
   const navigate = useNavigate();
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -21,10 +22,10 @@ export default function AuthLayout(){
           element={<Login />}
         />
         <Route
-          path='*'
-          element={<Navigate to={'/auth/login'} />}
+          path='/*'
+          element={<Notfound/>}
         />{' '}
       </Routes>
     </>
   );
-};
+}
