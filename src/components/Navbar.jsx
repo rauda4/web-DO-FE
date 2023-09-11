@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BiSolidUserCircle, BiLogOut } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
-export const Navbar = (props) => {
+export default function Navbar(props){
   const [navbarOpen, setNavbarOpen] = useState(false);
   const isUserLoggedIn = localStorage.getItem('token');
   const username = localStorage.getItem('username');
@@ -13,6 +13,7 @@ export const Navbar = (props) => {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
+    localStorage.removeItem('email');
     navigate('/');
     window.location.reload();
   };

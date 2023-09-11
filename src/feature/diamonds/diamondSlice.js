@@ -5,15 +5,18 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getDiamonds = createAsyncThunk('diamond', async () => {
+export const getDiamonds = createAsyncThunk('getdiamond', async () => {
   const response = await axios.get('http://localhost:8080/diamond');
   return response.data.data;
 });
-export const getDiamondsById = createAsyncThunk('diamond/:id', async () => {
-  const response = await axios.get('http://localhost:8080/diamond/:id');
-  // return response.data.data;
-  console.log(response);
-});
+export const getDiamondsById = createAsyncThunk(
+  'getdiamond by id',
+  async () => {
+    const response = await axios.get('http://localhost:8080/diamond/:id');
+    // return response.data.data;
+    console.log(response);
+  },
+);
 
 const diamondEntity = createEntityAdapter({
   selectId: (diamond) => diamond.id,
