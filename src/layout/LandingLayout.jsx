@@ -15,7 +15,6 @@ export default function LandingLayout() {
   }, [navigate]);
   return (
     <>
-      <Navbar transparent />
       <Routes>
         <Route
           path='/'
@@ -34,10 +33,10 @@ export default function LandingLayout() {
           element={<ContactUs />}
         />
         <Route
-          path='/*'
+          path='*'
           element={<Navigate to={'/'} />}
         />{' '}
       </Routes>
     </>
   );
-};
+}

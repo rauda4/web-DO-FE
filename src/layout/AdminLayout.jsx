@@ -4,6 +4,7 @@ import Sidebar from '../components/sidebar/Sidebar';
 import Dashboard from '../pages/dashboard';
 import Datadiamond from '../pages/dashboard/diamond/DataDiamond';
 import Dataproduct from '../pages/dashboard/Product/DataProduct';
+// import Notfound from '../pages/Notfound';
 
 export default function AdminLayout() {
   return (
@@ -31,6 +32,10 @@ export default function AdminLayout() {
               path='/*'
               element={<Navigate to={'/admin/dashboard'} />}
             />{' '}
+            {/* <Route
+              path='/*'
+              element={<Notfound />}
+            />{' '} */}
           </Routes>
         </div>
       </div>

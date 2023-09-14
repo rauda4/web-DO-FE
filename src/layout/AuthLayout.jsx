@@ -1,8 +1,8 @@
-import {  Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Register from '../components/auth/FormRegistRedux';
 import Login from '../components/auth/FormLoginRedux';
 import { useEffect } from 'react';
-import Notfound from '../pages/Notfound'
+// import Notfound from '../pages/Notfound';
 
 export default function AuthLayout() {
   const navigate = useNavigate();
@@ -23,8 +23,12 @@ export default function AuthLayout() {
         />
         <Route
           path='/*'
-          element={<Notfound/>}
+          element={<Login />}
         />{' '}
+        {/* <Route
+          path='/*'
+          element={<Navigate to={'/auth/login'} />}
+        />{' '} */}
       </Routes>
     </>
   );
