@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BiSolidUserCircle, BiLogOut } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
-export default function Navbar(props){
+export default function Navbar({ tittle, textmain, textauth, colorcollapse }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const isUserLoggedIn = localStorage.getItem('token');
   const username = localStorage.getItem('username');
@@ -27,9 +27,7 @@ export default function Navbar(props){
         <div className='container px-4 mx-auto flex flex-wrap items-center justify-between'>
           <div className='w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start'>
             <a
-              className={
-                'text-white text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase'
-              }
+              className={tittle}
               href='/'>
               divine owns
             </a>
@@ -37,7 +35,7 @@ export default function Navbar(props){
               className='cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none'
               type='button'
               onClick={() => setNavbarOpen(!navbarOpen)}>
-              <i className='text-white'>=</i>
+              <i className={colorcollapse}>=</i>
             </button>
           </div>
           <div
@@ -49,27 +47,21 @@ export default function Navbar(props){
             <ul className='flex flex-col lg:flex-row list-none mr-auto'>
               <li className='flex items-center'>
                 <a
-                  className={
-                    'lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                  }
+                  className={textmain}
                   href='/product'>
                   Product
                 </a>
               </li>
               <li className='flex items-center'>
                 <a
-                  className={
-                    'lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                  }
+                  className={textmain}
                   href='/diamond'>
                   Diamond
                 </a>
               </li>
               <li className='flex items-center'>
                 <a
-                  className={
-                    'lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                  }
+                  className={textmain}
                   href='/contactus'>
                   contact us
                 </a>
@@ -80,14 +72,12 @@ export default function Navbar(props){
                 {!isUserLoggedIn ? (
                   <a
                     href='/auth/login'
-                    className='w-full text-white'>
-                    <BiSolidUserCircle
-                      size={40}
-                      color='white'
-                    />{' '}
+                    className={textauth}>
+                    login{' '}
                   </a>
                 ) : (
-                  <div className='flex cursor-pointer text-white items-center gap-5'>
+                  <div className={textauth}>
+                    {' '}
                     Hello, {username}
                     <BiLogOut
                       size={38}
@@ -103,4 +93,4 @@ export default function Navbar(props){
       </nav>
     </div>
   );
-};
+}
