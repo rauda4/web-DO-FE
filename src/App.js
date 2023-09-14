@@ -18,7 +18,8 @@ function App() {
     <Routes>
       <Route
         path='/*'
-        element={<LandingLayout />}></Route>
+        element={<LandingLayout />}
+      />
       <Route
         path='/auth/*'
         element={
@@ -27,10 +28,12 @@ function App() {
           ) : (
             <AuthLayout />
           )
-        }></Route>
+        }
+      />
       <Route
         path='/admin/*'
-        element={isAuthenticated ? <AdminLayout /> : <AuthLayout />}></Route>
+        element={isAuthenticated ? <AdminLayout /> : <AuthLayout />}
+      />
     </Routes>
   );
 }
