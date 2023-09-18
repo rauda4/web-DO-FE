@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BiSolidUserCircle, BiLogOut } from 'react-icons/bi';
-import { useNavigate } from 'react-router-dom';
-
 
 import {
   Navbar,
@@ -229,7 +226,6 @@ function NavList() {
 
 export default function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = useState(false);
-  
 
   useEffect(() => {
     window.addEventListener(

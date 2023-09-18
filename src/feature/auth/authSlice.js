@@ -9,7 +9,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  message: '',
+  message: ''
 };
 
 // Register user
@@ -19,11 +19,10 @@ export const register = createAsyncThunk(
     try {
       return await authService.register(user);
     } catch (error) {
-      console.log(error);
-      const message = error.response.data.msg;
+      const message = error.response.data.message;
       return thunkAPI.rejectWithValue(message);
     }
-  },
+  }
 );
 
 // Login user
@@ -49,7 +48,7 @@ export const authSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = '';
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -84,7 +83,7 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
       });
-  },
+  }
 });
 
 export const { reset } = authSlice.actions;

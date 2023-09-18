@@ -3,7 +3,7 @@ import React from 'react';
 export default function CardDescDiamond() {
   return (
     <div className='bg-neutral-900 rounded-xl'>
-      <div className='w-96 py-10 px-10'>
+      <div className='md:w-96 py-10 px-10'>
         <h1 className='text-white'>
           <p>
             DO Store telah bekerja sama dengan Moonton untuk menawarkan top up
