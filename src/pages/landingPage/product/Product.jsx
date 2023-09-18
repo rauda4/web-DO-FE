@@ -17,6 +17,12 @@ export default function Product() {
       />
       <div className='bg-white py-9'></div>
       <div className='text-slate'>Product</div>
+      <div className='bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 focus:bg-yellow-700'>
+        Save changes
+      </div>
+      <button className='bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 focus:bg-yellow-700'>
+        Save changes
+      </button>
     </>
   );
 }

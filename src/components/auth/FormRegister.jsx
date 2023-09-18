@@ -11,22 +11,23 @@ export default function FormRegister() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const payload = {
-    username,
-    email,
-    password,
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
+      const payload = {
+        username,
+        email,
+        password
+      };
       const response = await axios.post(
         'http://localhost:8080/auth/register',
         payload,
         {
           headers: {
-            'Content-Type': 'application/json',
-          },
-        },
+            'Content-Type': 'application/json'
+          }
+        }
       );
       if (response.status === 200) {
         navigate('/auth/login');

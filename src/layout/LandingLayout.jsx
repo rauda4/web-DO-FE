@@ -1,5 +1,4 @@
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Diamond from '../pages/landingPage/diamond/Diamond';
 import Product from '../pages/landingPage/product/Product';
