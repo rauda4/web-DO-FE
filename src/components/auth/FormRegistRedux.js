@@ -13,14 +13,14 @@ export default function FormRegister() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: '',
+    password: ''
   });
   const { username, email, password } = formData;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth,
+    (state) => state.auth
   );
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function FormRegister() {
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
   };
 
@@ -46,7 +46,7 @@ export default function FormRegister() {
     const userData = {
       username,
       email,
-      password,
+      password
     };
     dispatch(register(userData));
   };

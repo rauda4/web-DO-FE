@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BiSolidUserCircle, BiLogOut } from 'react-icons/bi';
+import { BiLogOut } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({ tittle, textmain, textauth, colorcollapse }) {
@@ -10,10 +10,7 @@ export default function Navbar({ tittle, textmain, textauth, colorcollapse }) {
 
   const handleLogout = () => {
     // Perform logout action
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('username');
-    localStorage.removeItem('email');
+    localStorage.clear();
     navigate('/');
     window.location.reload();
   };

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AlertError from './AlertError';
+import AlertError from '../utils/AlertError';
 
 export default function FormRegister() {
   const [username, setUsername] = useState('');
@@ -13,6 +13,9 @@ export default function FormRegister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(username);
+    console.log(email);
+    console.log(password);
 
     try {
       const payload = {
