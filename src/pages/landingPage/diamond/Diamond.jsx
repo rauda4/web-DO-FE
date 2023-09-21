@@ -9,7 +9,7 @@ import {
   getDiamonds
 } from '../../../feature/diamonds/diamondSlice';
 import { Tooltip } from '@material-tailwind/react';
-import CardModalSubmit from '../../../components/card/CardModalSubmit';
+// import CardModalSubmit from '../../../components/card/CardModalSubmit';
 // import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
@@ -22,8 +22,6 @@ export default function Diamond() {
     zoneId: ''
   });
   const { gameId, zoneId } = formData;
-  const data = cart.purchase;
-
   // const navigate = useNavigate()
   useEffect(() => {
     dispatch(getDiamonds());
@@ -36,36 +34,20 @@ export default function Diamond() {
     }));
   };
 
-  const handleAddToCart = (purchase) => {
-    setCart({ purchase, formData });
+  const getData = (purchase) => {
+    setCart({ purchase });
   };
 
-  const handleSubmit = async (e) => {
+  const handleAddToCart = async (e) => {
     e.preventDefault();
-    const data = cart;
-    localStorage.setItem('purchase', JSON.stringify(data));
-    // try {
-    //   const payload = {
-    //     gameId,
-    //     zoneId,
-    //     diamond: cart
-    //   };
-    //   const response = await axios.post(
-    //     'http://localhost:8080/auth/register',
-    //     payload,
-    //     {
-    //       headers: {
-    //         'Content-Type': 'application/json'
-    //       }
-    //     }
-    //   );
-    //   if (response.status === 200) {
-    //     navigate('/auth/login');
-    //   }
-    // } catch (error) {
-    //   // setError(error.response.data.message);
-    //   console.log(error);
-    // }
+    const purhcaseHistory = {
+      gameId,
+      zoneId,
+      name: cart.purchase.name,
+      price: cart.purchase.price
+    };
+    localStorage.setItem('purchaseHistory', JSON.stringify(purhcaseHistory));
+    console.log(purhcaseHistory);
   };
 
   return (
@@ -92,11 +74,11 @@ export default function Diamond() {
           </section>
 
           <section>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => e.preventDefault()}>
               {/* input user id */}
               {/* user id */}
               <div className='lg:flex bg-neutral-900 rounded-xl mb-10 py-10 px-10 grid gap-4 grid-cols-3'>
-                <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-16 -ml-2 px-6 py-2'>
+                <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-16 -ml-1 px-6 py-2'>
                   Masukkan User ID
                 </h1>
                 <div className='form-control'>
@@ -108,7 +90,6 @@ export default function Diamond() {
                     value={gameId}
                     onChange={onChange}
                     className='input input-bordered outline-none [&::-webkit-inner-spin-button]:appearance-none '
-                    required
                   />
                 </div>
                 {/* id server*/}
@@ -121,9 +102,9 @@ export default function Diamond() {
                     value={zoneId}
                     onChange={onChange}
                     className='input input-bordered outline-none [&::-webkit-inner-spin-button]:appearance-none'
-                    required
                   />
                 </div>
+
                 {/* tooltip*/}
                 <div>
                   <Tooltip content='Example 222553 (2253)'>
@@ -144,8 +125,8 @@ export default function Diamond() {
                     return (
                       <div
                         onClick={() =>
-                          handleAddToCart({
-                            diamond: item.name,
+                          getData({
+                            name: item.name,
                             price: item.price
                           })
                         }
@@ -173,8 +154,10 @@ export default function Diamond() {
               </div>
 
               {/* handle submit */}
-              <button>
-                <CardModalSubmit />
+              <button
+                className='text-white bg-blue-500 border-none rounded-lg py-2 px-6 ml-72 mt-8 hover:text-black'
+                onClick={handleAddToCart}>
+                Submit
               </button>
             </form>
           </section>
