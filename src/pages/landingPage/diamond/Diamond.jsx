@@ -3,20 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import dm from '../../../assets/diamond.png';
 import CardDescDiamond from '../../../components/card/CardDescDiamond';
 import CardDiamond from '../../../components/card/CardDiamond';
+import CardPayment from '../../../components/card/CardPayment';
 import Navbar from '../../../components/Navbar';
 import {
   diamondSelector,
   getDiamonds
 } from '../../../feature/diamonds/diamondSlice';
 import { Tooltip } from '@material-tailwind/react';
-// import CardModalSubmit from '../../../components/card/CardModalSubmit';
+import CardModalSubmit from '../../../components/card/CardModalSubmit';
 // import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Diamond() {
   const dispatch = useDispatch();
   const diamond = useSelector(diamondSelector.selectAll);
-  const [cart, setCart] = useState([]);
+  const [cartDiamond, setCartDiamond] = useState({});
+  const [payment, setPayment] = useState([]);
   const [formData, setFormData] = useState({
     gameId: '',
     zoneId: ''
@@ -34,21 +36,37 @@ export default function Diamond() {
     }));
   };
 
-  const getData = (purchase) => {
-    setCart({ purchase });
-  };
-
   const handleAddToCart = async (e) => {
     e.preventDefault();
     const purhcaseHistory = {
       gameId,
       zoneId,
-      name: cart.purchase.name,
-      price: cart.purchase.price
+      name: cartDiamond.name,
+      price: cartDiamond.price,
+      payment: payment.bank,
+      accountNumber: payment.accountNumber
     };
     localStorage.setItem('purchaseHistory', JSON.stringify(purhcaseHistory));
     console.log(purhcaseHistory);
   };
+
+  const listPpayments = [
+    {
+      id: '1',
+      bankName: 'bca',
+      accountNumber: '7180333619'
+    },
+    {
+      id: '2',
+      bankName: 'bri',
+      accountNumber: '7180333619'
+    },
+    {
+      id: '3',
+      bankName: 'bni',
+      accountNumber: '7180333619'
+    }
+  ];
 
   return (
     <>
@@ -78,7 +96,7 @@ export default function Diamond() {
               {/* input user id */}
               {/* user id */}
               <div className='lg:flex bg-neutral-900 rounded-xl mb-10 py-10 px-10 grid gap-4 grid-cols-3'>
-                <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-16 -ml-1 px-6 py-2'>
+                <h1 className='flex justify-center bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-16 -ml-2 px-6 py-2'>
                   Masukkan User ID
                 </h1>
                 <div className='form-control'>
@@ -120,28 +138,23 @@ export default function Diamond() {
                 <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-5 lg:ml-8 ml-5 px-6 py-2'>
                   Pilih Nominal Top Up
                 </h1>
-                <div className='flex-row justify-items-center grid gap-x-10 gap-y-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-16 px-10'>
-                  {diamond.map((item) => {
-                    return (
-                      <div
-                        onClick={() =>
-                          getData({
-                            name: item.name,
-                            price: item.price
-                          })
-                        }
-                        key={item.id}>
-                        <CardDiamond
-                          ImgDiamond={dm}
-                          diamond={item.name}
-                          price={item.price.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                          })}
-                        />
-                      </div>
-                    );
-                  })}
+                <div className='flex-row justify-items-center grid gap-x-10 gap-y-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-16 px-4'>
+                  {diamond.map((item) => (
+                    <div
+                      onClick={() =>
+                        setCartDiamond({ name: item.name, price: item.price })
+                      }
+                      key={item.id}>
+                      <CardDiamond
+                        ImgDiamond={dm}
+                        diamond={item.name}
+                        price={item.price.toLocaleString('id-ID', {
+                          style: 'currency',
+                          currency: 'IDR'
+                        })}
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -150,7 +163,23 @@ export default function Diamond() {
                 <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-5 lg:ml-8 ml-5 px-6 py-2'>
                   Pilih pembayaran
                 </h1>
-                <div className='flex-row justify-items-center grid gap-x-10 gap-y-10 lg:grid-cols-1 py-16 px-10'></div>
+                <div className='py-20 mx-10 space-y-6 '>
+                  {listPpayments.map((item) => (
+                    <div
+                      key={item.id}
+                      onClick={() =>
+                        setPayment({
+                          bank: item.bankName,
+                          accountNumber: item.accountNumber
+                        })
+                      }>
+                      <CardPayment
+                        bankName={item.bankName}
+                        accountNumber={item.accountNumber}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* handle submit */}
@@ -158,6 +187,10 @@ export default function Diamond() {
                 className='text-white bg-blue-500 border-none rounded-lg py-2 px-6 ml-72 mt-8 hover:text-black'
                 onClick={handleAddToCart}>
                 Submit
+              </button>
+
+              <button>
+                <CardModalSubmit />
               </button>
             </form>
           </section>
