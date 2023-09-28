@@ -11,19 +11,22 @@ import {
 } from '../../../feature/diamonds/diamondSlice';
 import { Tooltip } from '@material-tailwind/react';
 import CardModalSubmit from '../../../components/card/CardModalSubmit';
+import bca from '../../../assets/payment/bca.png';
+import axios from 'axios';
 // import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
 export default function Diamond() {
   const dispatch = useDispatch();
   const diamond = useSelector(diamondSelector.selectAll);
+  const [token, setToken] = useState('');
   const [cartDiamond, setCartDiamond] = useState({});
   const [payment, setPayment] = useState([]);
   const [formData, setFormData] = useState({
     gameId: '',
-    zoneId: ''
+    serverId: ''
   });
-  const { gameId, zoneId } = formData;
+  const { gameId, serverId } = formData;
   // const navigate = useNavigate()
   useEffect(() => {
     dispatch(getDiamonds());
@@ -40,14 +43,18 @@ export default function Diamond() {
     e.preventDefault();
     const purhcaseHistory = {
       gameId,
-      zoneId,
-      name: cartDiamond.name,
+      serverId,
       price: cartDiamond.price,
-      payment: payment.bank,
-      accountNumber: payment.accountNumber
+      nameDiamond: cartDiamond.name,
+      payment: payment.bank
     };
-    localStorage.setItem('purchaseHistory', JSON.stringify(purhcaseHistory));
-    console.log(purhcaseHistory);
+    const response = await axios.post(
+      'http://localhost:8080/payment/process-transaction',
+      purhcaseHistory
+    );
+    setToken(response.data.transaction.token);
+    const url = response.data.transaction.redirect_url;
+    window.location.href = url;
   };
 
   const listPpayments = [
@@ -58,13 +65,13 @@ export default function Diamond() {
     },
     {
       id: '2',
-      bankName: 'bri',
-      accountNumber: '7180333619'
+      bankName: 'Ovo',
+      accountNumber: '081298538812'
     },
     {
       id: '3',
-      bankName: 'bni',
-      accountNumber: '7180333619'
+      bankName: 'Gopay',
+      accountNumber: '081298538812'
     }
   ];
 
@@ -116,8 +123,8 @@ export default function Diamond() {
                   <input
                     type='number'
                     placeholder='Id server'
-                    name='zoneId'
-                    value={zoneId}
+                    name='serverId'
+                    value={serverId}
                     onChange={onChange}
                     className='input input-bordered outline-none [&::-webkit-inner-spin-button]:appearance-none'
                   />
@@ -138,7 +145,7 @@ export default function Diamond() {
                 <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-5 lg:ml-8 ml-5 px-6 py-2'>
                   Pilih Nominal Top Up
                 </h1>
-                <div className='flex-row justify-items-center grid gap-x-10 gap-y-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-16 px-4'>
+                <div className='flex-row justify-items-center grid gap-x-10 gap-y-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-16 px-10'>
                   {diamond.map((item) => (
                     <div
                       onClick={() =>
@@ -150,7 +157,9 @@ export default function Diamond() {
                         diamond={item.name}
                         price={item.price.toLocaleString('id-ID', {
                           style: 'currency',
-                          currency: 'IDR'
+                          currency: 'IDR',
+                          maximumFractionDigits: 0,
+                          minimumFractionDigits: 0
                         })}
                       />
                     </div>
@@ -169,11 +178,11 @@ export default function Diamond() {
                       key={item.id}
                       onClick={() =>
                         setPayment({
-                          bank: item.bankName,
-                          accountNumber: item.accountNumber
+                          bank: item.bankName
                         })
                       }>
                       <CardPayment
+                        image={bca}
                         bankName={item.bankName}
                         accountNumber={item.accountNumber}
                       />
@@ -183,14 +192,15 @@ export default function Diamond() {
               </div>
 
               {/* handle submit */}
-              <button
-                className='text-white bg-blue-500 border-none rounded-lg py-2 px-6 ml-72 mt-8 hover:text-black'
-                onClick={handleAddToCart}>
-                Submit
-              </button>
-
               <button>
-                <CardModalSubmit />
+                <CardModalSubmit
+                  serverId={serverId}
+                  gameId={gameId}
+                  price={cartDiamond.price || 0}
+                  totalDiamond={cartDiamond.name}
+                  payment={payment.bank}
+                  onClick={handleAddToCart}
+                />
               </button>
             </form>
           </section>
