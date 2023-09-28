@@ -4,6 +4,7 @@ import Diamond from '../pages/landingPage/diamond/Diamond';
 import Product from '../pages/landingPage/product/Product';
 import ContactUs from '../pages/landingPage/contactus/ContactUs';
 import { useEffect } from 'react';
+import Payment from '../pages/landingPage/diamond/Payment';
 
 export default function LandingLayout() {
   const navigate = useNavigate();
@@ -20,15 +21,19 @@ export default function LandingLayout() {
           element={<Home />}
         />
         <Route
-          path='/diamond'
+          path='/mobile-legends'
           element={<Diamond />}
+        />
+        <Route
+          path='/payment'
+          element={<Payment />}
         />
         <Route
           path='/product'
           element={<Product />}
         />
         <Route
-          path='/contactus'
+          path='/contact-us'
           element={<ContactUs />}
         />
         <Route
