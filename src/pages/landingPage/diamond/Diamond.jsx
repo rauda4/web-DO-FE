@@ -19,7 +19,6 @@ import axios from 'axios';
 export default function Diamond() {
   const dispatch = useDispatch();
   const diamond = useSelector(diamondSelector.selectAll);
-  const [token, setToken] = useState('');
   const [cartDiamond, setCartDiamond] = useState({});
   const [payment, setPayment] = useState([]);
   const [formData, setFormData] = useState({
@@ -52,7 +51,6 @@ export default function Diamond() {
       'http://localhost:8080/payment/process-transaction',
       purhcaseHistory
     );
-    setToken(response.data.transaction.token);
     const url = response.data.transaction.redirect_url;
     window.location.href = url;
   };
