@@ -1,12 +1,19 @@
 import React from 'react';
 
-export default function CardModalSubmit({ onSubmit }) {
+export default function CardModalSubmit({
+  onClick,
+  gameId,
+  serverId,
+  totalDiamond,
+  price,
+  payment
+}) {
   return (
     <>
       {/* The button to open modal */}
       <label
         htmlFor='my_modal_6'
-        className='text-white btn bg-blue-500 border-none ml-72 mt-8 hover:text-black'>
+        className='ml-64 text-white btn bg-blue-500 border-none mt-8 hover:text-black'>
         Submit Modal
       </label>
 
@@ -21,43 +28,43 @@ export default function CardModalSubmit({ onSubmit }) {
           {/* body modal */}
           <div className='w-full rounded-xl bg-layer-2 px-8 py-6'>
             <h3 className='text-lg font-semibold text-heading'>
-              Transfer Details
+              Transaction Details
             </h3>
 
             <dl className='mt-4 space-y-4'>
               <div className='flex items-center justify-between'>
-                <dt className='text-sm font-semibold text-text'>Zone Id</dt>
-                <dd className='text-sm font-semibold text-heading'>
-                  291092032
+                <dt className='text-sm font-semibold text-text'>Id Server</dt>
+                <dd className='text-md font-semibold text-heading'>
+                  {gameId} ({serverId})
                 </dd>
-              </div>
-              <div className='flex items-center justify-between'>
-                <dt className='text-sm font-semibold text-text'>Server Id</dt>
-                <dd className='text-sm font-semibold text-heading'>2253</dd>
               </div>
               <div className='flex items-center justify-between'>
                 <dt className='text-sm font-semibold text-text'>
                   Total Diamond
                 </dt>
                 <dd className='text-lg font-semibold text-heading'>
-                  86 Diamond
+                  {totalDiamond}
+                </dd>
+              </div>
+
+              <div className='flex items-center justify-between'>
+                <dt className='text-sm font-semibold text-text'>
+                  Payment Method
+                </dt>
+                <dd className='text-lg font-semibold text-heading uppercase'>
+                  {payment}
                 </dd>
               </div>
               <div className='flex items-center justify-between'>
                 <dt className='text-sm font-semibold text-text'>Total Price</dt>
                 <dd className='text-lg font-semibold text-heading'>
-                  Rp 20.000
+                  {price.toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0
+                  })}
                 </dd>
-              </div>
-              <div className='flex items-center justify-between'>
-                <dt className='text-sm font-semibold text-text'>
-                  Payment Method
-                </dt>
-                <dd className='text-lg font-semibold text-heading'>BCA</dd>
-              </div>
-              <div className='flex items-center justify-between'>
-                <dt className='text-sm font-semibold text-text'>Expired in</dt>
-                <dd className='text-sm font-semibold text-heading'>5 min</dd>
               </div>
             </dl>
           </div>
@@ -66,12 +73,12 @@ export default function CardModalSubmit({ onSubmit }) {
           <div className='modal-action'>
             <label
               htmlFor='my_modal_6'
-              className='btn bg-slate-400'>
+              className='btn bg-slate-300 hover:bg-slate-400 rounded-full drop-shadow-lg'>
               Close!
             </label>
             <div
-              className='btn bg-blue-900 text-white hover:text-black'
-              onSubmit={onSubmit}>
+              className='btn bg-blue-500 text-white hover:bg-blue-600 rounded-full drop-shadow-xl'
+              onClick={onClick}>
               Confirm
             </div>
           </div>

@@ -1,20 +1,17 @@
-import bca from '../../assets/payment/bca.png';
-// import dana from '../../assets/payment/dana.png';
-
-export default function Page({ bankName, accountNumber }) {
+export default function Page({ bankName, accountNumber, image }) {
   return (
     <div className='flex w-full flex-col space-y-6 '>
       {/* Bank BCA */}
-      <button className='card cursor-pointer flex-row justify-between rounded-xl p-4 border-2 border-slate-600 hover:bg-slate-900 focus:bg-slate-800'>
+      <button className='card cursor-pointer flex-row justify-between p-4 border-2 border-slate-600 hover:bg-slate-900 focus:bg-slate-800'>
         <div className='flex space-x-8'>
-          <div className='rounded-xl bg-layer-3 px-5 flex items-center'>
+          <div className='rounded-md bg-layer-3 px-5 py-3 flex items-center bg-white'>
             <img
-              src={bca}
+              src={image}
               style={{ height: 36, width: 96 }}
               alt='bca'
             />
           </div>
-          <div>
+          <div className='mt-2'>
             <h3 className='text-white font-semibold text-heading text-start uppercase '>
               {bankName}
             </h3>

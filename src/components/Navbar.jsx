@@ -52,14 +52,14 @@ export default function Navbar({ tittle, textmain, textauth, colorcollapse }) {
               <li className='flex items-center'>
                 <a
                   className={textmain}
-                  href='/diamond'>
+                  href='/mobile-legends'>
                   Diamond
                 </a>
               </li>
               <li className='flex items-center'>
                 <a
                   className={textmain}
-                  href='/contactus'>
+                  href='/contact-us'>
                   contact us
                 </a>
               </li>
