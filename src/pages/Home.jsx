@@ -2,6 +2,8 @@ import React from 'react';
 // import { Carousel } from '../components/Carousel'
 import banner from '../assets/banner3.jpg';
 import Navbar from '../components/Navbar';
+import { FaWallet, FaHourglassEnd } from 'react-icons/fa';
+import { MdPayment } from 'react-icons/md';
 
 export default function Home() {
   return (
@@ -37,12 +39,11 @@ export default function Home() {
               <div className='w-full lg:w-6/12 px-4 ml-auto mr-auto text-center'>
                 <div className='pr-12'>
                   <h1 className='text-white font-semibold text-5xl'>
-                    Your story starts with us.
+                    Divine Owns Store
                   </h1>
                   <p className='mt-4 text-lg text-gray-300'>
-                    This is a simple example of a Landing Page you can build
-                    using Tailwind Starter Kit. It features multiple CSS
-                    components based on the Tailwindcss design system.
+                    Website top-up terbesar, tercepat dan terpercaya di
+                    Indonesia.
                   </p>
                 </div>
               </div>
@@ -72,13 +73,16 @@ export default function Home() {
               <div className='lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center'>
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg'>
                   <div className='px-4 py-5 flex-auto'>
-                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400'>
-                      <i className='fas fa-award'></i>
+                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-900'>
+                      <FaWallet />
                     </div>
-                    <h6 className='text-xl font-semibold'>Awarded Agency</h6>
+                    <h6 className='text-xl font-semibold'>
+                      Promosi-promosi menarik
+                    </h6>
                     <p className='mt-2 mb-4 text-gray-600'>
-                      Divide details about your product or agency work into
-                      parts. A paragraph describing a feature will be enough.
+                      Penggemar game dapat bergantung pada Codashop karena kami
+                      memberikan penawaran menarik, diskon dan kode item dari
+                      promosi game yang disukai kamu.
                     </p>
                   </div>
                 </div>
@@ -87,13 +91,14 @@ export default function Home() {
               <div className='w-full md:w-4/12 px-4 text-center'>
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg'>
                   <div className='px-4 py-5 flex-auto'>
-                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400'>
-                      <i className='fas fa-retweet'></i>
+                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-900'>
+                      <FaHourglassEnd />
                     </div>
-                    <h6 className='text-xl font-semibold'>Free Revisions</h6>
+                    <h6 className='text-xl font-semibold'>Pengiriman instan</h6>
                     <p className='mt-2 mb-4 text-gray-600'>
-                      Keep you user engaged by providing meaningful information.
-                      Remember that by this time, the user is curious.
+                      Ketika kamu melakukan top-up di Codashop, item atau barang
+                      yang kamu beli akan selalu dikirim ke akun kamu secara
+                      instan dan cepat, tanpa tertunda.
                     </p>
                   </div>
                 </div>
@@ -102,13 +107,16 @@ export default function Home() {
               <div className='pt-6 w-full md:w-4/12 px-4 text-center'>
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg'>
                   <div className='px-4 py-5 flex-auto'>
-                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400'>
-                      <i className='fas fa-fingerprint'></i>
+                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-900'>
+                      <MdPayment />
                     </div>
-                    <h6 className='text-xl font-semibold'>Verified Company</h6>
+                    <h6 className='text-xl font-semibold'>
+                      Metode pembayaran terbaik
+                    </h6>
                     <p className='mt-2 mb-4 text-gray-600'>
-                      Write a few lines about each one. A paragraph describing a
-                      feature will be enough. Keep you user engaged!
+                      Kami menawarkan begitu banyak pilihan pembayaran mulai
+                      dari potong pulsa, e-wallet, bank transfer, dan pembayaran
+                      di mini market terdekat.
                     </p>
                   </div>
                 </div>
@@ -121,23 +129,19 @@ export default function Home() {
                   <i className='fas fa-user-friends text-xl'></i>
                 </div>
                 <h3 className='text-3xl mb-2 font-semibold leading-normal'>
-                  Working with us is a pleasure
+                  Lebih Hemat Pakai DO.Store
                 </h3>
                 <p className='text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700'>
-                  Don't let your uses guess by attaching tooltips and popoves to
-                  any element. Just make sure you enable them first via
-                  JavaScript.
-                </p>
-                <p className='text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700'>
-                  The kit comes with three pre-built pages to help you get
-                  started faster. You can change the text and images and you're
-                  good to go. Just make sure you enable them first via
-                  JavaScript.
+                  Setiap bulannya, jutaan gamers menggunakan Codashop untuk
+                  melakukan pembelian kredit game dengan lancar: tanpa
+                  registrasi ataupun log-in, dan kredit permainan akan
+                  ditambahkan secara instan. Top-up Mobile Legends, Free Fire,
+                  Ragnarok M, dan berbagai game lainnya!
                 </p>
                 <a
-                  href='https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation'
+                  href='/product'
                   className='font-bold text-gray-800 mt-8'>
-                  Check Tailwind Starter Kit!
+                  Cek Produk Kami !
                 </a>
               </div>
 
@@ -280,7 +284,7 @@ export default function Home() {
                 <div className='px-6'>
                   <img
                     alt='...'
-                    src=''
+                    src={banner}
                     className='shadow-lg rounded-full max-w-full mx-auto'
                     style={{ maxWidth: '120px' }}
                   />
@@ -313,7 +317,7 @@ export default function Home() {
                 <div className='px-6'>
                   <img
                     alt='...'
-                    src=''
+                    src={banner}
                     className='shadow-lg rounded-full max-w-full mx-auto'
                     style={{ maxWidth: '120px' }}
                   />
@@ -341,7 +345,7 @@ export default function Home() {
                 <div className='px-6'>
                   <img
                     alt='...'
-                    src=''
+                    src={banner}
                     className='shadow-lg rounded-full max-w-full mx-auto'
                     style={{ maxWidth: '120px' }}
                   />
@@ -374,7 +378,7 @@ export default function Home() {
                 <div className='px-6'>
                   <img
                     alt='...'
-                    src=''
+                    src={banner}
                     className='shadow-lg rounded-full max-w-full mx-auto'
                     style={{ maxWidth: '120px' }}
                   />
