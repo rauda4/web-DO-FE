@@ -1,5 +1,5 @@
 import React from 'react';
-import FormRegister from '../../components/FormRegister';
+import FormRegister from '../../components/auth/FormRegisterFormRegister';
 // import FormRegister from '../../components/auth/FormRegistRedux';
 
 export default function Register() {

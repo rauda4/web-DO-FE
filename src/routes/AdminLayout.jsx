@@ -4,17 +4,19 @@ import Sidebar from '../components/sidebar/Sidebar';
 import Dashboard from '../pages/dashboard';
 import Datadiamond from '../pages/dashboard/diamond/DataDiamond';
 import Dataproduct from '../pages/dashboard/Product/DataProduct';
+import CardAdminAddDiamond from '../components/card/CardAdminAddDiamond';
+import CardAdminEditDiamond from '../components/card/CardAdminEditDiamond';
 // import Notfound from '../pages/Notfound';
 
 export default function AdminLayout() {
   return (
     <>
-      <div className='flex'>
-        <div className='w-1/3'>
+      <div>
+        <div>
           {' '}
           <Sidebar />
         </div>
-        <div className='p-6'>
+        <div className='relative md:ml-72 md:mt-0 bg-blueGray-100'>
           <Routes>
             <Route
               path='/dashboard'
@@ -23,6 +25,10 @@ export default function AdminLayout() {
             <Route
               path='/datadiamond'
               element={<Datadiamond />}
+            />
+            <Route
+              path='/datadiamond/:id'
+              element={<CardAdminEditDiamond />}
             />
             <Route
               path='/dataproduct'

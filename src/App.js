@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import AuthLayout from './layout/AuthLayout';
-import LandingLayout from './layout/LandingLayout';
-import AdminLayout from './layout/AdminLayout';
+import AuthLayout from './routes/AuthLayout';
+import LandingLayout from './routes/LandingLayout';
+import AdminLayout from './routes/AdminLayout';
 import { useEffect, useState } from 'react';
 
 function App() {

@@ -5,10 +5,7 @@ import CardDescDiamond from '../../../components/card/CardDescDiamond';
 import CardDiamond from '../../../components/card/CardDiamond';
 import CardPayment from '../../../components/card/CardPayment';
 import Navbar from '../../../components/Navbar';
-import {
-  diamondSelector,
-  getDiamonds
-} from '../../../feature/diamonds/diamondSlice';
+import { getDiamonds } from '../../../feature/diamonds/diamondSlice';
 import { Tooltip } from '@material-tailwind/react';
 import CardModalSubmit from '../../../components/card/CardModalSubmit';
 import bca from '../../../assets/payment/bca.png';
@@ -18,7 +15,7 @@ import axios from 'axios';
 
 export default function Diamond() {
   const dispatch = useDispatch();
-  const diamond = useSelector(diamondSelector.selectAll);
+  const diamond = useSelector((state) => state.diamond.diamond);
   const [cartDiamond, setCartDiamond] = useState({});
   const [payment, setPayment] = useState([]);
   const [formData, setFormData] = useState({
@@ -40,19 +37,26 @@ export default function Diamond() {
 
   const handleAddToCart = async (e) => {
     e.preventDefault();
-    const purhcaseHistory = {
-      gameId,
-      serverId,
-      price: cartDiamond.price,
-      nameDiamond: cartDiamond.name,
-      payment: payment.bank
-    };
-    const response = await axios.post(
-      'http://localhost:8080/payment/process-transaction',
-      purhcaseHistory
-    );
-    const url = response.data.transaction.redirect_url;
-    window.location.href = url;
+
+    try {
+      const purhcaseHistory = {
+        gameId,
+        serverId,
+        price: cartDiamond.price,
+        nameDiamond: cartDiamond.name,
+        payment: payment.bank
+      };
+      const response = await axios.post(
+        'http://localhost:8080/payment/process-transaction',
+        purhcaseHistory
+      );
+      if (response.status === 200) {
+        const url = response.data.transaction.redirect_url;
+        window.location.href = url;
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   const listPpayments = [
@@ -147,18 +151,24 @@ export default function Diamond() {
                   {diamond.map((item) => (
                     <div
                       onClick={() =>
-                        setCartDiamond({ name: item.name, price: item.price })
+                        setCartDiamond({
+                          name: item.diamond_name,
+                          price: item.diamond_price
+                        })
                       }
-                      key={item.id}>
+                      key={item.diamond_id}>
                       <CardDiamond
                         ImgDiamond={dm}
-                        diamond={item.name}
-                        price={item.price.toLocaleString('id-ID', {
-                          style: 'currency',
-                          currency: 'IDR',
-                          maximumFractionDigits: 0,
-                          minimumFractionDigits: 0
-                        })}
+                        diamond={item.diamond_name}
+                        price={(item.diamond_price || 0).toLocaleString(
+                          'id-ID',
+                          {
+                            style: 'currency',
+                            currency: 'IDR',
+                            maximumFractionDigits: 0,
+                            minimumFractionDigits: 0
+                          }
+                        )}
                       />
                     </div>
                   ))}

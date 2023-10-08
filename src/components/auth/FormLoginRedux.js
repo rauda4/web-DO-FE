@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, reset } from '../../feature/auth/authSlice';
-import Spinner from '../../components/utils/Spinner';
+import Spinner from '../utils/Spinner';
 import AlertError from '../utils/AlertError';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 
@@ -11,20 +11,19 @@ export default function FormLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
+    email: '',
+    password: ''
   });
 
-  const { username, password } = formData;
+  const { email, password } = formData;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth,
+    (state) => state.auth
   );
 
   useEffect(() => {
-    document.title = 'Login';
     if (isError) {
       setError(message);
     }
@@ -38,14 +37,14 @@ export default function FormLogin() {
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = {
-      username,
-      password,
+      email,
+      password
     };
     dispatch(login(userData));
   };
@@ -63,14 +62,14 @@ export default function FormLogin() {
             <form onSubmit={handleSubmit}>
               <div className='form-control'>
                 <label className='label'>
-                  <span className='label-text'>Username</span>
+                  <span className='label-text'>Email</span>
                 </label>
                 <input
                   type='text'
-                  placeholder='Username'
+                  placeholder='Email'
                   className='input input-bordered'
-                  name='username'
-                  value={username}
+                  name='email'
+                  value={email}
                   onChange={onChange}
                 />
               </div>

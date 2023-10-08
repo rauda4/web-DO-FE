@@ -1,221 +1,212 @@
-import React from 'react';
-import {
-  Card,
-  Typography,
-  List,
-  ListItem,
-  ListItemPrefix,
-  ListItemSuffix,
-  Chip,
-  Accordion,
-  AccordionHeader,
-  AccordionBody,
-} from '@material-tailwind/react';
-import {
-  PresentationChartBarIcon,
-  ShoppingBagIcon,
-  UserCircleIcon,
-  Cog6ToothIcon,
-  InboxIcon,
-  PowerIcon,
-} from '@heroicons/react/24/solid';
-import { BiSolidUserCircle, BiLogOut } from 'react-icons/bi';
-import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
-import { useNavigate } from 'react-router-dom';
+/*eslint-disable*/
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { BiLogOut } from 'react-icons/bi';
+import { ListItem, ListItemPrefix } from '@material-tailwind/react';
+import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
 export default function Sidebar() {
-  const [open, setOpen] = React.useState(0);
-  const isUserLoggedIn = localStorage.getItem('token');
   const username = localStorage.getItem('username');
-  const navigate = useNavigate();
-
+  const [collapseShow, setCollapseShow] = useState('hidden');
   const handleLogout = () => {
     // Perform logout action
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('username');
-    localStorage.removeItem('email');
-    navigate('/');
-    window.location.reload();
+    localStorage.clear();
+    window.location.href = '/';
   };
-
-  const handleOpen = (value) => {
-    setOpen(open === value ? 0 : value);
-  };
-
   return (
-    <Card className='h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5'>
-      <div className='mb-2 p-4'>
-        <Typography
-          variant='h5'
-          color='blue-gray'>
-          Sidebar
-        </Typography>
-      </div>
-      <List>
-        <Accordion
-          open={open === 1}
-          icon={
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${
-                open === 1 ? 'rotate-180' : ''
-              }`}
-            />
-          }>
-          <ListItem
-            className='p-0'
-            selected={open === 1}>
-            <AccordionHeader
-              onClick={() => handleOpen(1)}
-              className='border-b-0 p-3'>
-              <ListItemPrefix>
-                <PresentationChartBarIcon className='h-5 w-5' />
-              </ListItemPrefix>
-              <Typography
-                color='blue-gray'
-                className='mr-auto font-normal'>
-                Dashboard
-              </Typography>
-            </AccordionHeader>
-          </ListItem>
-          <AccordionBody className='py-1'>
-            <List className='p-0'>
-              <a href='/admin/dashboard'>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon
-                      strokeWidth={3}
-                      className='h-3 w-5'
-                    />
-                  </ListItemPrefix>
-                  Dashboard
-                </ListItem>
-              </a>
-              <a href='/admin/datadiamond'>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon
-                      strokeWidth={3}
-                      className='h-3 w-5'
-                    />
-                  </ListItemPrefix>
-                  Diamond
-                </ListItem>
-              </a>
-              <a href='/admin/dataproduct'>
-                <ListItem>
-                  <ListItemPrefix>
-                    <ChevronRightIcon
-                      strokeWidth={3}
-                      className='h-3 w-5'
-                    />
-                  </ListItemPrefix>
-                  Product
-                </ListItem>
-              </a>
-            </List>
-          </AccordionBody>
-        </Accordion>
-        <Accordion
-          open={open === 2}
-          icon={
-            <ChevronDownIcon
-              strokeWidth={2.5}
-              className={`mx-auto h-4 w-4 transition-transform ${
-                open === 2 ? 'rotate-180' : ''
-              }`}
-            />
-          }>
-          <ListItem
-            className='p-0'
-            selected={open === 2}>
-            <AccordionHeader
-              onClick={() => handleOpen(2)}
-              className='border-b-0 p-3'>
-              <ListItemPrefix>
-                <ShoppingBagIcon className='h-5 w-5' />
-              </ListItemPrefix>
-              <Typography
-                color='blue-gray'
-                className='mr-auto font-normal'>
-                E-Commerce
-              </Typography>
-            </AccordionHeader>
-          </ListItem>
-          <AccordionBody className='py-1'>
-            <List className='p-0'>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon
-                    strokeWidth={3}
-                    className='h-3 w-5'
-                  />
-                </ListItemPrefix>
-                Orders
-              </ListItem>
-              <ListItem>
-                <ListItemPrefix>
-                  <ChevronRightIcon
-                    strokeWidth={3}
-                    className='h-3 w-5'
-                  />
-                </ListItemPrefix>
-                Products
-              </ListItem>
-            </List>
-          </AccordionBody>
-        </Accordion>
-        <hr className='my-2 border-blue-gray-50' />
-        <ListItem>
-          <ListItemPrefix>
-            <InboxIcon className='h-5 w-5' />
-          </ListItemPrefix>
-          Inbox
-          <ListItemSuffix>
-            <Chip
-              value='14'
-              size='sm'
-              variant='ghost'
-              color='blue-gray'
-              className='rounded-full'
-            />
-          </ListItemSuffix>
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <UserCircleIcon className='h-5 w-5' />
-          </ListItemPrefix>
-          Profile
-        </ListItem>
-        <ListItem>
-          <ListItemPrefix>
-            <Cog6ToothIcon className='h-5 w-5' />
-          </ListItemPrefix>
-          Settings
-        </ListItem>
-        <ListItem onClick={handleLogout}>
-          <ListItemPrefix>
-            <PowerIcon className='h-5 w-5' />
-          </ListItemPrefix>
-          {!isUserLoggedIn ? (
-            <div className='w-full text-white'>
-              <BiSolidUserCircle
-                size={40}
-                color='white'
-              />{' '}
+    <>
+      <nav className='md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6'>
+        <div className='md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-96 mx-auto'>
+          {/* Toggler */}
+          <button
+            className='cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent'
+            type='button'
+            onClick={() => setCollapseShow('bg-white m-2 py-3 px-6')}>
+            <i className='fas fa-bars'>=</i>
+          </button>
+          {/* Brand */}
+          <Link
+            className='md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0'
+            to='/'>
+            Dashboard DO.Store
+          </Link>
+          {/* User */}
+          <ul className='md:hidden items-center flex flex-wrap list-none'>
+            <li className='inline-block relative'></li>
+            <li className='inline-block relative'></li>
+          </ul>
+          {/* Collapse */}
+          <div
+            className={
+              'md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded ' +
+              collapseShow
+            }>
+            {/* Collapse header */}
+            <div className='md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200'>
+              <div className='flex flex-wrap'>
+                <div className='w-6/12'>
+                  <Link
+                    className='md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0'
+                    to='/'>
+                    Dashboard DO.Store
+                  </Link>
+                </div>
+                <div className='w-6/12 flex justify-end'>
+                  <button
+                    type='button'
+                    className='cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent'
+                    onClick={() => setCollapseShow('hidden')}>
+                    <i className='fas fa-times'></i>
+                  </button>
+                </div>
+              </div>
             </div>
-          ) : (
-            <div className='flex cursor-pointer text-black items-center gap-5'>
-              Hello, {username}
-              <BiLogOut
-                size={38}
-                color='white'
-              />
-            </div>
-          )}
-        </ListItem>
-      </List>
-    </Card>
+            {/* Form */}
+            <form className='mt-6 mb-4 md:hidden'>
+              <div className='mb-3 pt-0'>
+                <input
+                  type='text'
+                  placeholder='Search'
+                  className='border-0 px-3 py-2 h-12 border border-solid  border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal'
+                />
+              </div>
+            </form>
+
+            {/* Divider */}
+            <hr className='my-4 md:min-w-full' />
+            {/* Heading */}
+            <h6 className='md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline'>
+              Admin Layout Pages
+            </h6>
+            {/* Navigation */}
+
+            <ul className='md:flex-col md:min-w-full flex flex-col list-none'>
+              <li className='items-center text-xs uppercase font-bold block '>
+                <a href='/admin/dashboard'>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <ChevronRightIcon
+                        strokeWidth={3}
+                        className='h-3 w-5'
+                      />
+                    </ListItemPrefix>
+                    Dashboard
+                  </ListItem>
+                </a>
+              </li>
+
+              <li className='items-center text-xs uppercase font-bold block '>
+                <a href='/admin/datadiamond'>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <ChevronRightIcon
+                        strokeWidth={3}
+                        className='h-3 w-5'
+                      />
+                    </ListItemPrefix>
+                    Diamond
+                  </ListItem>
+                </a>
+              </li>
+
+              <li className='items-center text-xs uppercase font-bold block '>
+                <a href='/admin/dataproduct'>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <ChevronRightIcon
+                        strokeWidth={3}
+                        className='h-3 w-5'
+                      />
+                    </ListItemPrefix>
+                    Product
+                  </ListItem>
+                </a>
+              </li>
+            </ul>
+
+            {/* Divider */}
+            <hr className='my-4 md:min-w-full' />
+            {/* Heading */}
+            <h6 className='md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline'>
+              Auth Layout Pages
+            </h6>
+            {/* Navigation */}
+
+            <ul className='md:flex-col md:min-w-full flex flex-col list-none md:mb-4'>
+              <li className='items-center text-xs uppercase font-bold block '>
+                <a href='/auth/login'>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <ChevronRightIcon
+                        strokeWidth={3}
+                        className='h-3 w-5'
+                      />
+                    </ListItemPrefix>
+                    Login
+                  </ListItem>
+                </a>
+              </li>
+
+              <li className='items-center text-xs uppercase font-bold block '>
+                <a href='/auth/register'>
+                  <ListItem>
+                    <ListItemPrefix>
+                      <ChevronRightIcon
+                        strokeWidth={3}
+                        className='h-3 w-5'
+                      />
+                    </ListItemPrefix>
+                    Register
+                  </ListItem>
+                </a>
+              </li>
+            </ul>
+
+            {/* Divider */}
+            <hr className='my-4 md:min-w-full' />
+            {/* Heading */}
+            <h6 className='md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline'>
+              No Layout Pages
+            </h6>
+            {/* Navigation */}
+
+            <ul className='md:flex-col md:min-w-full flex flex-col list-none md:mb-4'>
+              <li className='items-center'>
+                <Link
+                  className='text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block'
+                  to='/landing'>
+                  <i className='fas fa-newspaper text-blueGray-400 mr-2 text-sm'></i>{' '}
+                  Landing Page
+                </Link>
+              </li>
+
+              <li className='items-center'>
+                <Link
+                  className='text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block'
+                  to='/profile'>
+                  <i className='fas fa-user-circle text-blueGray-400 mr-2 text-sm'></i>{' '}
+                  Profile Page
+                </Link>
+              </li>
+            </ul>
+
+            {/* Divider */}
+            <hr className='my-4 md:min-w-full' />
+            <ul>
+              <li
+                className='items-center text-xs uppercase font-bold block'
+                onClick={handleLogout}>
+                <ListItem>
+                  <ListItemPrefix>
+                    <BiLogOut />
+                  </ListItemPrefix>
+                  Logout from {username}
+                </ListItem>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 }
