@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    'path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}',
+    'path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}'
+  ],
   theme: {
     extend: {
       colors: {
@@ -15,9 +19,9 @@ module.exports = {
           700: '#1d4ed8',
           800: '#1e40af',
           900: '#1e3a8a',
-          950: '#172554',
-        },
-      },
+          950: '#172554'
+        }
+      }
     },
     fontFamily: {
       body: [
@@ -35,7 +39,7 @@ module.exports = {
         'Apple Color Emoji',
         'Segoe UI Emoji',
         'Segoe UI Symbol',
-        'Noto Color Emoji',
+        'Noto Color Emoji'
       ],
       sans: [
         'Open Sans',
@@ -52,9 +56,9 @@ module.exports = {
         'Apple Color Emoji',
         'Segoe UI Emoji',
         'Segoe UI Symbol',
-        'Noto Color Emoji',
-      ],
-    },
+        'Noto Color Emoji'
+      ]
+    }
   },
-  plugins: [require('daisyui')],
+  plugins: [require('daisyui')]
 };

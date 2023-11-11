@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AuthLayout from './routes/AuthLayout';
 import LandingLayout from './routes/LandingLayout';
 import AdminLayout from './routes/AdminLayout';
@@ -22,13 +22,7 @@ function App() {
       />
       <Route
         path='/auth/*'
-        element={
-          isAuthenticated ? (
-            <Navigate to={'/admin/datadiamond'} />
-          ) : (
-            <AuthLayout />
-          )
-        }
+        element={isAuthenticated ? <AdminLayout /> : <AuthLayout />}
       />
       <Route
         path='/admin/*'

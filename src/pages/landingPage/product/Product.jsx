@@ -1,29 +1,30 @@
+import Banner from '../../../components/carousel/Banner';
 import Navbar from '../../../components/Navbar';
+import Category from './Category';
 
 export default function Product() {
   return (
     <>
-      <Navbar
-        transparent
-        tittle={
-          'text-black text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase'
-        }
-        textmain={
-          'lg:text-black lg:hover:text-gray-700 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-        }
-        textauth={
-          'lg:text-black lg:hover:text-gray-700 text-gray-800 px-3 lg:py-2 py-3 flex cursor-pointer items-center gap-5 text-xs uppercase font-bold'
-        }
-      />
-      <div className='bg-white py-9'></div>
-      <div className='text-slate'>Product</div>
-      <br />
-      <div className='form-control w-56'>
-        <input
-          type='text'
-          placeholder='Search'
-          className='input input-bordered w-24 md:w-auto'
+      <div className='fixed top-0 left-0 right-0 '>
+        <Navbar
+          transparent
+          tittle={'text-white '}
+          textmain={'lg:text-white lg:hover:text-gray-300 text-gray-800 '}
+          textauth={'lg:text-white lg:hover:text-gray-300 text-gray-800 '}
+          colorcollapse={'text-white'}
         />
+        <div className='bg-neutral-800 py-9'></div>
+      </div>
+      <div className='w-full min-h-screen py-24 bg-slate-100'>
+        <div className='container mx-auto px-20'>
+          <div className='mt-16'>
+            <Banner />
+            <div className='mt-10 bg-white'>
+              <p className='py-6 ml-5 font-semibold text-xl'>Kategori</p>
+              <Category />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

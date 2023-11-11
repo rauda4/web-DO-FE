@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BiLogOut } from 'react-icons/bi';
+import { AiOutlineClose } from 'react-icons/ai';
 import { ListItem, ListItemPrefix } from '@material-tailwind/react';
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
@@ -56,7 +57,9 @@ export default function Sidebar() {
                     type='button'
                     className='cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent'
                     onClick={() => setCollapseShow('hidden')}>
-                    <i className='fas fa-times'></i>
+                    <i className='fas fa-times'>
+                      <AiOutlineClose />
+                    </i>
                   </button>
                 </div>
               </div>

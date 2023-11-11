@@ -21,10 +21,10 @@ export default function AuthLayout() {
           path='/login'
           element={<Login />}
         />
-        <Route
+        {/* <Route
           path='/*'
           element={<Login />}
-        />{' '}
+        />{' '} */}
         {/* <Route
           path='/*'
           element={<Navigate to={'/auth/login'} />}

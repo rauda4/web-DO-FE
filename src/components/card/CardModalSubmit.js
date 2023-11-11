@@ -13,7 +13,7 @@ export default function CardModalSubmit({
       {/* The button to open modal */}
       <label
         htmlFor='my_modal_6'
-        className='ml-64 text-white btn bg-blue-500 border-none mt-8 hover:text-black'>
+        className='text-white btn bg-blue-500 border-none mt-8 hover:text-black'>
         Submit Modal
       </label>
 

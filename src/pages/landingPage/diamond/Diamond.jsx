@@ -5,7 +5,10 @@ import CardDescDiamond from '../../../components/card/CardDescDiamond';
 import CardDiamond from '../../../components/card/CardDiamond';
 import CardPayment from '../../../components/card/CardPayment';
 import Navbar from '../../../components/Navbar';
-import { getDiamonds } from '../../../feature/diamonds/diamondSlice';
+import {
+  diamondSelector,
+  getDiamonds
+} from '../../../feature/diamonds/diamondSlice';
 import { Tooltip } from '@material-tailwind/react';
 import CardModalSubmit from '../../../components/card/CardModalSubmit';
 import bca from '../../../assets/payment/bca.png';
@@ -15,7 +18,7 @@ import axios from 'axios';
 
 export default function Diamond() {
   const dispatch = useDispatch();
-  const diamond = useSelector((state) => state.diamond.diamond);
+  const diamond = useSelector(diamondSelector.selectAll);
   const [cartDiamond, setCartDiamond] = useState({});
   const [payment, setPayment] = useState([]);
   const [formData, setFormData] = useState({
@@ -79,20 +82,18 @@ export default function Diamond() {
 
   return (
     <>
-      <Navbar
-        transparent
-        tittle={
-          'text-white text-lg font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase'
-        }
-        textmain={
-          'lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-        }
-        textauth={
-          'lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 lg:py-2 py-3 flex cursor-pointer items-center gap-5 text-xs uppercase font-bold'
-        }
-        colorcollapse={'text-white'}
-      />
-      <div className='bg-neutral-900 py-9'></div>
+      <div className='fixed top-0 left-0 right-0'>
+        <Navbar
+          transparent
+          tittle={'text-white '}
+          textmain={'lg:text-white lg:hover:text-gray-300 text-gray-800 '}
+          textauth={
+            'lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 lg:py-2 py-3 flex cursor-pointer items-center gap-5 text-xs uppercase font-bold'
+          }
+          colorcollapse={'text-white'}
+        />
+        <div className='bg-neutral-900 py-9'></div>
+      </div>
       <div className='bg-neutral-800 min-h-screen py-24'>
         {/* deskripsi */}
         <div className='md:flex justify-center gap-10'>
@@ -104,50 +105,57 @@ export default function Diamond() {
             <form onSubmit={(e) => e.preventDefault()}>
               {/* input user id */}
               {/* user id */}
-              <div className='lg:flex bg-neutral-900 rounded-xl mb-10 py-10 px-10 grid gap-4 grid-cols-3'>
-                <h1 className='flex justify-center bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-16 -ml-2 px-6 py-2'>
-                  Masukkan User ID
-                </h1>
-                <div className='form-control'>
-                  <label className='label'></label>
-                  <input
-                    type='number'
-                    placeholder='Masukkan user Id'
-                    name='gameId'
-                    value={gameId}
-                    onChange={onChange}
-                    className='input input-bordered outline-none [&::-webkit-inner-spin-button]:appearance-none '
-                  />
+              <div className='bg-neutral-900 rounded-xl mb-10 py-10 px-10'>
+                <div className='-mt-16'>
+                  <h1 className='w-48 flex justify-center bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white -ml-2 px-6 py-2'>
+                    Masukkan User ID
+                  </h1>
                 </div>
-                {/* id server*/}
-                <div className='form-control'>
-                  <label className='label'></label>
-                  <input
-                    type='number'
-                    placeholder='Id server'
-                    name='serverId'
-                    value={serverId}
-                    onChange={onChange}
-                    className='input input-bordered outline-none [&::-webkit-inner-spin-button]:appearance-none'
-                  />
-                </div>
+                <div className='flex gap-4'>
+                  <div className='form-control'>
+                    <label className='label'></label>
+                    <input
+                      type='number'
+                      placeholder='Masukkan user Id'
+                      name='gameId'
+                      value={gameId}
+                      onChange={onChange}
+                      className='input input-bordered outline-none [&::-webkit-inner-spin-button]:appearance-none '
+                    />
+                  </div>
+                  {/* id server*/}
+                  <div className='form-control'>
+                    <label className='label'></label>
+                    <input
+                      type='number'
+                      placeholder='Id server'
+                      name='serverId'
+                      value={serverId}
+                      onChange={onChange}
+                      className='input input-bordered outline-none [&::-webkit-inner-spin-button]:appearance-none'
+                    />
+                  </div>
 
-                {/* tooltip*/}
-                <div>
-                  <Tooltip content='Example 222553 (2253)'>
-                    <div className='bg-white w-6 text-center font-bold color-white rounded-full cursor-default mt-7'>
-                      ?
-                    </div>
-                  </Tooltip>
+                  {/* tooltip*/}
+                  <div>
+                    <Tooltip content='Example 222553 (2253)'>
+                      <div className='bg-white w-6 text-center font-bold color-white rounded-full cursor-default mt-7'>
+                        ?
+                      </div>
+                    </Tooltip>
+                  </div>
                 </div>
               </div>
 
               {/* price list diamond */}
-              <div className='bg-neutral-900 rounded-xl mb-10'>
-                <h1 className='flex justify-center ml-10 bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white absolute -mt-5 lg:ml-8 ml-5 px-6 py-2'>
-                  Pilih Nominal Top Up
-                </h1>
-                <div className='flex-row justify-items-center grid gap-x-10 gap-y-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 py-16 px-10'>
+
+              <div className='bg-neutral-900 rounded-xl mb-10 py-10 px-10'>
+                <div className='-mt-16 mb-10'>
+                  <h1 className='w-48 flex justify-center bg-neutral-700 border-8 border-neutral-900 rounded-xl font-normal text-white -ml-2 px-6 py-2'>
+                    Masukkan User ID
+                  </h1>
+                </div>
+                <div className='flex-row justify-items-center grid gap-x-10 gap-y-10 lg:grid-cols-3 md:grid-cols-2 grid-cols-1'>
                   {diamond.map((item) => (
                     <div
                       onClick={() =>
@@ -200,7 +208,7 @@ export default function Diamond() {
               </div>
 
               {/* handle submit */}
-              <button>
+              <button className='w-full'>
                 <CardModalSubmit
                   serverId={serverId}
                   gameId={gameId}

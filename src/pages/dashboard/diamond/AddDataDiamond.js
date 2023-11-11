@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addDiamond } from '../../feature/diamonds/diamondSlice';
+import { addDiamond } from '../../../feature/diamonds/diamondSlice';
 
 export default function CardAddDiamond() {
   const dispatch = useDispatch();
@@ -32,15 +32,15 @@ export default function CardAddDiamond() {
     <div>
       {/* The button to open modal */}
       <label
-        htmlFor='add_data'
-        className='btn'>
+        htmlFor='add_datadiamond'
+        className='btn bg-sky-700 text-white hover:bg-sky-900'>
         + Add New Data
       </label>
 
       {/* Put this part before </body> tag */}
       <input
         type='checkbox'
-        id='add_data'
+        id='add_datadiamond'
         className='modal-toggle'
       />
       <div className='modal'>
@@ -98,7 +98,7 @@ export default function CardAddDiamond() {
           {/* footer */}
           <div className='modal-action'>
             <label
-              htmlFor='add_data'
+              htmlFor='add_datadiamond'
               className='btn bg-slate-300 hover:bg-slate-400 rounded-full drop-shadow-lg'>
               Close!
             </label>

@@ -5,6 +5,7 @@ import Product from '../pages/landingPage/product/Product';
 import ContactUs from '../pages/landingPage/contactus/ContactUs';
 import { useEffect } from 'react';
 import Payment from '../pages/landingPage/diamond/Payment';
+import Testing from '../pages/landingPage/testing/Testing';
 
 export default function LandingLayout() {
   const navigate = useNavigate();
@@ -35,6 +36,10 @@ export default function LandingLayout() {
         <Route
           path='/contact-us'
           element={<ContactUs />}
+        />
+        <Route
+          path='/testing'
+          element={<Testing />}
         />
         <Route
           path='*'

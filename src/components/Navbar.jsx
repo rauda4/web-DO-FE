@@ -17,14 +17,14 @@ export default function Navbar({ tittle, textmain, textauth, colorcollapse }) {
 
   return (
     <div>
-      <nav
-        className={
-          'absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 '
-        }>
-        <div className='container px-4 mx-auto flex flex-wrap items-center justify-between'>
+      <nav className='absolute z-50 w-full flex justify-between py-3'>
+        <div className='container px-20 mx-auto flex flex-wrap items-center '>
           <div className='w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start'>
             <a
-              className={tittle}
+              className={
+                'font-bold text-lg leading-relaxed inline-block mr-4 py-2 whitespace-nowrap capitalize ' +
+                tittle
+              }
               href='/'>
               divine owns
             </a>
@@ -44,21 +44,30 @@ export default function Navbar({ tittle, textmain, textauth, colorcollapse }) {
             <ul className='flex flex-col lg:flex-row list-none mr-auto'>
               <li className='flex items-center'>
                 <a
-                  className={textmain}
+                  className={
+                    'px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold ' +
+                    textmain
+                  }
                   href='/product'>
                   Product
                 </a>
               </li>
               <li className='flex items-center'>
                 <a
-                  className={textmain}
+                  className={
+                    'px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold ' +
+                    textmain
+                  }
                   href='/mobile-legends'>
                   Diamond
                 </a>
               </li>
               <li className='flex items-center'>
                 <a
-                  className={textmain}
+                  className={
+                    'px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold ' +
+                    textmain
+                  }
                   href='/contact-us'>
                   contact us
                 </a>
@@ -69,11 +78,18 @@ export default function Navbar({ tittle, textmain, textauth, colorcollapse }) {
                 {!isUserLoggedIn ? (
                   <a
                     href='/auth/login'
-                    className={textauth}>
+                    className={
+                      'px-3 lg:py-2 py-3 flex cursor-pointer items-center gap-5 text-xs uppercase font-bold ' +
+                      textauth
+                    }>
                     login{' '}
                   </a>
                 ) : (
-                  <div className={textauth}>
+                  <div
+                    className={
+                      'px-3 lg:py-2 py-3 flex cursor-pointer items-center gap-5 text-xs uppercase font-bold ' +
+                      textauth
+                    }>
                     {' '}
                     Hello, {username}
                     <BiLogOut

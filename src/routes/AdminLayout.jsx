@@ -4,8 +4,8 @@ import Sidebar from '../components/sidebar/Sidebar';
 import Dashboard from '../pages/dashboard';
 import Datadiamond from '../pages/dashboard/diamond/DataDiamond';
 import Dataproduct from '../pages/dashboard/Product/DataProduct';
-import CardAdminAddDiamond from '../components/card/CardAdminAddDiamond';
-import CardAdminEditDiamond from '../components/card/CardAdminEditDiamond';
+import CardAdminEditDiamond from '../pages/dashboard/diamond/DataDiamond';
+import EditDataProduct from '../pages/dashboard/Product/EditDataProduct';
 // import Notfound from '../pages/Notfound';
 
 export default function AdminLayout() {
@@ -33,6 +33,10 @@ export default function AdminLayout() {
             <Route
               path='/dataproduct'
               element={<Dataproduct />}
+            />
+            <Route
+              path='/dataproduct/update/:id'
+              element={<EditDataProduct />}
             />
             <Route
               path='/*'
